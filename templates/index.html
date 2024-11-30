@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Distance Monitor</title>
+</head>
+<body>
+    <h1>Parking Distance Monitor</h1>
+    <p>Khoảng cách đo được từ cảm biến: <strong>{{ distance }} cm</strong></p>
+    <p id="status"></p>
+
+    <script>
+        function updateStatus() {
+            var distance = parseInt("{{ distance }}");
+            var statusElement = document.getElementById("status");
+            if (distance > 30) {
+                statusElement.innerHTML = "Vị trí còn chỗ giữ xe.";
+                statusElement.style.color = "green";
+            } else {
+                statusElement.innerHTML = "Vị trí đã có xe đỗ.";
+                statusElement.style.color = "red";
+            }
+        }
+        updateStatus();
+        setInterval(updateStatus, 500);  // Cập nhật mỗi 2 giây
+    </script>
+</body>
+</html>
